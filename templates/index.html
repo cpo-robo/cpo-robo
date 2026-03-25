@@ -492,12 +492,26 @@
         const inputField = document.getElementById('inputField');
         const sendButton = document.getElementById('sendButton');
 
-        // Configure backend API endpoint
-        // For local testing: http://127.0.0.1:5000
-        // For production: https://your-api-domain.com
-        const API_ENDPOINT = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-            ? 'http://127.0.0.1:5000/api/chat'
-            : '/api/chat';  // Relative path for production
+        // OpenAI Configuration
+        const OPENAI_API_KEY = prompt('Enter your OpenAI API key:');
+        let permitGuideContext = '';
+
+        // Load permit guide on startup
+        async function loadPermitGuide() {
+            try {
+                const response = await fetch('Syracuse_Permit_Guide_RAG.json');
+                const data = await response.json();
+                permitGuideContext = "## Syracuse Residential Permit Guide\n\n";
+                for (const chunk of data.chunks || []) {
+                    permitGuideContext += `### ${chunk.title}\n${chunk.content}\n\n`;
+                }
+            } catch (error) {
+                console.warn('Could not load permit guide:', error);
+            }
+        }
+
+        // Initialize on load
+        loadPermitGuide();
 
         // Auto-resize textarea
         inputField.addEventListener('input', () => {
@@ -517,7 +531,12 @@
 
         async function sendMessage() {
             const message = inputField.value.trim();
-            if (!message) return;
+            if (!message || !OPENAI_API_KEY) {
+                if (!OPENAI_API_KEY) {
+                    addMessage('Error: API key not provided. Please refresh and enter your OpenAI API key.', 'ai');
+                }
+                return;
+            }
 
             // Clear input
             inputField.value = '';
@@ -530,17 +549,37 @@
             addLoadingMessage();
 
             try {
-                // Send to backend
-                const response = await fetch(API_ENDPOINT, {
+                // Build system prompt with permit guide
+                const systemPrompt = `You are CPO Robo, a Centralized Permitting Bot for the City of Syracuse.
+You help residents understand the permit process for new residential builds and modular homes.
+
+You have access to the City of Syracuse Residential Permit Guide. Use this information to answer questions accurately.
+Be helpful, clear, and professional. If you don't know something, say so honestly.
+Provide specific contact information and links when relevant.
+
+## Reference Materials:
+${permitGuideContext}`;
+
+                // Call OpenAI API directly
+                const response = await fetch('https://api.openai.com/v1/chat/completions', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${OPENAI_API_KEY}`
                     },
-                    body: JSON.stringify({ message })
+                    body: JSON.stringify({
+                        model: 'gpt-4o-mini',
+                        max_tokens: 1024,
+                        system: systemPrompt,
+                        messages: [
+                            { role: 'user', content: message }
+                        ]
+                    })
                 });
 
                 if (!response.ok) {
-                    throw new Error('Failed to get response');
+                    const error = await response.json();
+                    throw new Error(error.error?.message || 'Failed to get response');
                 }
 
                 const data = await response.json();
@@ -549,10 +588,11 @@
                 removeLoadingMessage();
 
                 // Add AI response
-                addMessage(data.response, 'ai');
+                const responseText = data.choices[0]?.message?.content || 'No response received';
+                addMessage(responseText, 'ai');
             } catch (error) {
                 removeLoadingMessage();
-                addMessage('Error: Unable to connect to API service. Please check the backend is running.', 'ai');
+                addMessage(`Error: ${error.message}. Please check your API key and internet connection.`, 'ai');
                 console.error('Error:', error);
             }
 
