@@ -261,6 +261,17 @@
             transition: all 0.3s ease;
         }
 
+        /* Remove spinner arrows from number input */
+        .input-field::-webkit-outer-spin-button,
+        .input-field::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .input-field[type=number] {
+            -moz-appearance: textfield;
+        }
+
         .input-field:focus {
             outline: none;
             border-color: var(--accent-cyan);
@@ -447,7 +458,7 @@
                 <div class="empty-state-text">
                     Centralized Permitting Bot
                     <br><br>
-                    Ask me anything about Syracuse residential permits
+                    Ask me anything about Syracuse permits
                 </div>
                 <div class="suggestions-container">
                     <div class="suggestions-label">Try asking about:</div>
