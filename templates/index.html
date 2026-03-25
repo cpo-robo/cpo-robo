@@ -492,26 +492,12 @@
         const inputField = document.getElementById('inputField');
         const sendButton = document.getElementById('sendButton');
 
-        // OpenAI Configuration
-        const OPENAI_API_KEY = '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';
-        let permitGuideContext = '';
-
-        // Load permit guide on startup
-        async function loadPermitGuide() {
-            try {
-                const response = await fetch('Syracuse_Permit_Guide_RAG.json');
-                const data = await response.json();
-                permitGuideContext = "## Syracuse Residential Permit Guide\n\n";
-                for (const chunk of data.chunks || []) {
-                    permitGuideContext += `### ${chunk.title}\n${chunk.content}\n\n`;
-                }
-            } catch (error) {
-                console.warn('Could not load permit guide:', error);
-            }
-        }
-
-        // Initialize on load
-        loadPermitGuide();
+        // Cloud Run Backend Configuration
+        // For local testing: http://127.0.0.1:5000
+        // For production: https://cpo-robo-XXXXX.run.app (will be updated after deployment)
+        const BACKEND_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+            ? 'http://127.0.0.1:5000'
+            : 'https://cpo-robo-XXXXX.run.app';  // Replace XXXXX with actual Cloud Run service ID
 
         // Auto-resize textarea
         inputField.addEventListener('input', () => {
@@ -531,12 +517,7 @@
 
         async function sendMessage() {
             const message = inputField.value.trim();
-            if (!message || !OPENAI_API_KEY) {
-                if (!OPENAI_API_KEY) {
-                    addMessage('Error: API key not provided. Please refresh and enter your OpenAI API key.', 'ai');
-                }
-                return;
-            }
+            if (!message) return;
 
             // Clear input
             inputField.value = '';
@@ -549,37 +530,18 @@
             addLoadingMessage();
 
             try {
-                // Build system prompt with permit guide
-                const systemPrompt = `You are CPO Robo, a Centralized Permitting Bot for the City of Syracuse.
-You help residents understand the permit process for new residential builds and modular homes.
-
-You have access to the City of Syracuse Residential Permit Guide. Use this information to answer questions accurately.
-Be helpful, clear, and professional. If you don't know something, say so honestly.
-Provide specific contact information and links when relevant.
-
-## Reference Materials:
-${permitGuideContext}`;
-
-                // Call OpenAI API directly
-                const response = await fetch('https://api.openai.com/v1/chat/completions', {
+                // Call Flask backend
+                const response = await fetch(`${BACKEND_URL}/api/chat`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${OPENAI_API_KEY}`
                     },
-                    body: JSON.stringify({
-                        model: 'gpt-4o-mini',
-                        max_tokens: 1024,
-                        system: systemPrompt,
-                        messages: [
-                            { role: 'user', content: message }
-                        ]
-                    })
+                    body: JSON.stringify({ message })
                 });
 
                 if (!response.ok) {
                     const error = await response.json();
-                    throw new Error(error.error?.message || 'Failed to get response');
+                    throw new Error(error.error || 'Failed to get response');
                 }
 
                 const data = await response.json();
@@ -588,11 +550,10 @@ ${permitGuideContext}`;
                 removeLoadingMessage();
 
                 // Add AI response
-                const responseText = data.choices[0]?.message?.content || 'No response received';
-                addMessage(responseText, 'ai');
+                addMessage(data.response, 'ai');
             } catch (error) {
                 removeLoadingMessage();
-                addMessage(`Error: ${error.message}. Please check your API key and internet connection.`, 'ai');
+                addMessage(`Error: Unable to connect to server. ${error.message}`, 'ai');
                 console.error('Error:', error);
             }
 
