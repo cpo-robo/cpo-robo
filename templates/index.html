@@ -340,6 +340,63 @@
             line-height: 1.6;
         }
 
+        .suggestions-container {
+            margin-top: 30px;
+            animation: fadeIn 0.6s ease-out 0.3s both;
+        }
+
+        .suggestions-label {
+            font-size: 12px;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            opacity: 0.8;
+        }
+
+        .suggestions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            max-width: 600px;
+        }
+
+        .suggestion-btn {
+            padding: 12px 16px;
+            background: rgba(0, 102, 255, 0.1);
+            border: 1px solid var(--accent-cyan);
+            border-radius: 6px;
+            color: var(--accent-cyan);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            line-height: 1.4;
+            box-shadow: 0 0 10px rgba(0, 217, 255, 0.1);
+        }
+
+        .suggestion-btn:hover {
+            background: rgba(0, 217, 255, 0.2);
+            box-shadow: 0 0 20px rgba(0, 217, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .suggestion-btn:active {
+            transform: translateY(0);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         @media (max-width: 768px) {
             .message-bubble {
                 max-width: 85%;
@@ -359,6 +416,10 @@
 
             .logo {
                 font-size: 20px;
+            }
+
+            .suggestions-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -387,6 +448,17 @@
                     Centralized Permitting Bot
                     <br><br>
                     Ask me anything about Syracuse residential permits
+                </div>
+                <div class="suggestions-container">
+                    <div class="suggestions-label">Try asking about:</div>
+                    <div class="suggestions-grid">
+                        <button class="suggestion-btn" onclick="useSuggestion('What documents do I need for a new build permit?')">📋 Required Documents</button>
+                        <button class="suggestion-btn" onclick="useSuggestion('What are the insurance requirements for residential permits?')">🛡️ Insurance Requirements</button>
+                        <button class="suggestion-btn" onclick="useSuggestion('How long does the permit approval process take?')">⏱️ Timeline & Approval</button>
+                        <button class="suggestion-btn" onclick="useSuggestion('Who do I contact for permit inspections?')">👷 Inspections & Contacts</button>
+                        <button class="suggestion-btn" onclick="useSuggestion('What are the zoning restrictions for my area?')">📍 Zoning & Location</button>
+                        <button class="suggestion-btn" onclick="useSuggestion('What is the permit application fee?')">💰 Costs & Fees</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -521,6 +593,18 @@
             if (loadingMessage) {
                 loadingMessage.remove();
             }
+        }
+
+        // Handle suggestion button clicks
+        function useSuggestion(text) {
+            inputField.value = text;
+            inputField.style.height = 'auto';
+            inputField.style.height = Math.min(inputField.scrollHeight, 120) + 'px';
+            inputField.focus();
+            // Auto-send after a short delay
+            setTimeout(() => {
+                sendMessage();
+            }, 100);
         }
 
         // Focus input on load
