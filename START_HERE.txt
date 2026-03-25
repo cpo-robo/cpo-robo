@@ -1,0 +1,122 @@
+================================================================================
+                       ARIA PERMIT CHATBOT - START HERE
+================================================================================
+
+BEFORE YOU PROCEED
+==================
+YOU MUST CHANGE YOUR OPENAI API KEY!
+
+Your old key has been exposed and needs to be deleted:
+1. Go to: https://platform.openai.com/account/api-keys
+2. Delete any old/exposed keys
+3. Create a NEW API key
+4. Save it for the next step
+
+================================================================================
+
+3 EASY STEPS TO RUN YOUR BOT
+============================
+
+STEP 1: SET YOUR NEW API KEY (2 minutes)
+----------------------------------------
+1. Right-click "SET_API_KEY.bat" and select "Run as administrator"
+2. Paste your NEW OpenAI API key (from step above)
+3. Press Enter
+4. You should see "SUCCESS" message
+5. Close the window
+
+STEP 2: START THE BOT (5 seconds)
+---------------------------------
+1. Double-click "START_SERVER.bat"
+2. Wait 2-3 seconds
+3. Your browser will open automatically
+4. You should see the ARIA interface (dark theme with cyan glows)
+
+STEP 3: CHAT! (Infinite fun)
+----------------------------
+1. Type a question about Syracuse permits
+2. Press ENTER or click SEND
+3. ARIA will answer
+4. Keep asking!
+
+================================================================================
+
+EXAMPLE QUESTIONS:
+==================
+- "What documents do I need for a new build permit?"
+- "What are the insurance requirements?"
+- "Who do I contact for inspections?"
+- "How long do I have to complete my project?"
+- "What about zoning? Where's the zoning office?"
+
+================================================================================
+
+SYSTEM REQUIREMENTS:
+====================
+✓ Python 3.8+ (already installed on your computer)
+✓ Internet connection (for OpenAI API)
+✓ Modern web browser (Chrome, Firefox, Edge, Safari)
+✓ OpenAI account with API key
+
+================================================================================
+
+FILES IN THIS FOLDER:
+====================
+- START_HERE.txt                      ← You are here!
+- SET_API_KEY.bat                     ← Run this first
+- START_SERVER.bat                    ← Run this second
+- app.py                              ← Backend (Python)
+- requirements.txt                    ← Python packages
+- templates/index.html                ← Web interface
+- Syracuse_Permit_Guide_RAG.json      ← Permit data
+- README.md                           ← Full documentation
+
+================================================================================
+
+TROUBLESHOOTING:
+===============
+
+Q: "Python is not installed" error
+A: You should have Python. If not, install from https://www.python.org
+
+Q: "What's my API key?"
+A: Get it from https://platform.openai.com/account/api-keys
+   Click "Create new secret key" and copy it
+
+Q: Port 5000 is in use
+A: Change the port number in app.py (line 112)
+   Change from: port=5000
+   To: port=8000
+
+Q: Nothing happens when I click .bat files
+A: Right-click and select "Run as administrator"
+
+================================================================================
+
+COST ESTIMATE:
+==============
+Using ChatGPT's gpt-4o-mini (cheapest model):
+- 1 question = ~$0.001
+- 1000 conversations = ~$1-3
+- 10000 conversations = ~$10-30
+- Very affordable!
+
+Set a spending limit at: https://platform.openai.com/account/billing/limits
+
+================================================================================
+
+NEED HELP?
+==========
+1. Read README.md for full documentation
+2. Check SECURITY_NOTE.txt for API key safety
+3. Make sure Python is installed and in your PATH
+4. Make sure you deleted your old API key
+
+================================================================================
+
+Ready? Let's go!
+
+Step 1: Set your API key by running SET_API_KEY.bat
+Step 2: Start the bot by running START_SERVER.bat
+Step 3: Enjoy! 🚀
+

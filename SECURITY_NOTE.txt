@@ -1,0 +1,103 @@
+================================================================================
+                        SECURITY BEST PRACTICES
+================================================================================
+
+API KEY SECURITY REMINDER
+==========================
+Always keep your OpenAI API keys private and secure.
+
+BEST PRACTICES:
+1. Go to: https://platform.openai.com/account/api-keys
+2. Create a NEW API key for this bot
+3. Use the new key with SET_API_KEY.bat
+4. Never share keys in chats or commit them to GitHub
+
+================================================================================
+
+HOW TO STORE API KEYS SAFELY
+=============================
+
+GOOD (What you should do):
+✓ Use SET_API_KEY.bat - stores in Windows environment variables
+✓ Environment variables are secure and per-computer
+✓ Won't be exposed in code files
+✓ Settings persist across sessions
+
+BAD (Don't do this):
+✗ Never share API keys in chats
+✗ Never commit keys to git/GitHub
+✗ Never hardcode keys in Python files
+✗ Never paste keys in unsecured locations
+
+================================================================================
+
+USING SET_API_KEY.BAT (SAFE METHOD)
+===================================
+
+1. Double-click SET_API_KEY.bat
+2. Paste your NEW OpenAI API key when prompted
+3. Your key is stored in Windows environment variables
+4. It's never visible in code
+5. It persists automatically
+
+The bot will use this key securely.
+
+================================================================================
+
+IF YOU USED THE EXPOSED KEY ALREADY
+===================================
+
+Don't worry! Here's what to do:
+
+1. REVOKE the exposed key immediately:
+   - Go to https://platform.openai.com/account/api-keys
+   - Delete the key I listed above
+
+2. CREATE a new key:
+   - Same page, click "Create new secret key"
+   - Copy the new key (it won't show again!)
+
+3. UPDATE your bot:
+   - Run SET_API_KEY.bat
+   - Paste your NEW key
+   - Start using the bot
+
+4. That's it! The old key is useless now.
+
+================================================================================
+
+COST MONITORING
+===============
+
+To prevent surprise bills:
+
+1. Set a usage limit:
+   - Go to https://platform.openai.com/account/billing/limits
+   - Set "Hard limit" to $5-10/month
+   - Get alerts when approaching limit
+
+2. Monitor usage:
+   - https://platform.openai.com/account/billing/overview
+   - Check daily
+   - gpt-4o-mini is very cheap (~$0.23/1000 conversations)
+
+3. Understand pricing:
+   - gpt-4o-mini: $0.15 per 1M input tokens, $0.60 per 1M output
+   - One permit question = ~$0.001
+   - Very affordable!
+
+================================================================================
+
+SUMMARY
+=======
+
+✓ Delete/revoke the exposed key immediately
+✓ Create a new key at https://platform.openai.com/account/api-keys
+✓ Use SET_API_KEY.bat to store it securely
+✓ Never share keys again
+✓ Monitor your usage for unexpected charges
+✓ Set a spending limit to be safe
+
+You're all set! The bot is now secure and ready to use.
+
+================================================================================

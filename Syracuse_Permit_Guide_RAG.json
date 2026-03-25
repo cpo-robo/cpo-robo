@@ -1,0 +1,147 @@
+{
+  "document_title": "City of Syracuse Residential New Builds / Modular Homes - Permit Guide",
+  "document_type": "Government Guidance",
+  "version": "1.0",
+  "chunks": [
+    {
+      "id": 1,
+      "section": "Overview",
+      "title": "What is a Residential New Build Permit?",
+      "content": "A Residential New Build Permit is required prior to the construction of a new single or two-family home in the City of Syracuse. This guide provides general permitting and site plan requirements, as well as submission procedures to help in the process of applying for your permit.",
+      "keywords": ["permit", "residential", "new build", "requirement"]
+    },
+    {
+      "id": 2,
+      "section": "How to Apply",
+      "title": "Where to Submit Your Application",
+      "content": "Residential New Build applications are to be submitted using the City's Online Application Portal at syr.gov/residentialpermits. The proposed new build will be subject to the review and approval of several City departments.",
+      "keywords": ["application", "portal", "submit", "online"]
+    },
+    {
+      "id": 3,
+      "section": "General Information",
+      "title": "Site Plans and Approvals",
+      "content": "Site Plans and site plan approvals are required for each submission individually. Plans should include details such as any work occurring in the City Right-of-Way (road restoration outlines, curb cuts, sidewalks, etc.)",
+      "keywords": ["site plan", "approval", "right-of-way"]
+    },
+    {
+      "id": 4,
+      "section": "General Information",
+      "title": "Permit Fees",
+      "content": "The permit fee is based on the type of project and estimated cost of construction. A base filing fee must be paid up front. All other additional fees will be calculated once the review is approved. You will be notified when additional fees are due and for how much.",
+      "keywords": ["fee", "cost", "payment", "base filing fee"]
+    },
+    {
+      "id": 5,
+      "section": "General Information",
+      "title": "Required Separate Permits",
+      "content": "All trade, fire prevention, and right-of-way permits (i.e. HVAC, Electric, Fire Alarm, Curb Cut, Road Cut, Sidewalk etc.) must be obtained separately. Plumbing permits must be obtained through Onondaga County.",
+      "keywords": ["separate permits", "HVAC", "electric", "plumbing", "Onondaga County"]
+    },
+    {
+      "id": 6,
+      "section": "General Information",
+      "title": "Project Timeline",
+      "content": "Once your permit is issued, you will have one year from the time of issuance to complete the project.",
+      "keywords": ["timeline", "one year", "completion"]
+    },
+    {
+      "id": 7,
+      "section": "Pre-Planning",
+      "title": "Check Your Zoning",
+      "content": "Before you start, make sure your project is allowed by our zoning laws by contacting the Office of Zoning at zoning@syr.gov or 315-448-8640. The way that your property is zoned will affect the kind of projects you're allowed to do. You can also use the Zoning and Application Discovery Tool located on the Online Application Portal. If any applications are required for zoning, address those before applying for building and site permits.",
+      "keywords": ["zoning", "zoning@syr.gov", "315-448-8640", "tool"]
+    },
+    {
+      "id": 8,
+      "section": "Pre-Planning",
+      "title": "Pre-Development Meeting",
+      "content": "If you are planning multiple new builds, consider scheduling a pre-development meeting with City staff to help with the planning process. To schedule, use the Pre-Development Meeting Registration Form on the City's Online Application Portal.",
+      "keywords": ["pre-development", "meeting", "multiple builds", "registration"]
+    },
+    {
+      "id": 9,
+      "section": "Inspections",
+      "title": "Final Inspection Process",
+      "content": "Upon construction completion, you must contact the Division of Code Enforcement at 315-448-8695 or CodeEnforcement@syr.gov to schedule an inspection. When you call, be prepared to provide: permit number, building address, type of inspection(s), and type of building (i.e. single family, apartment).",
+      "keywords": ["inspection", "code enforcement", "315-448-8695", "completion"]
+    },
+    {
+      "id": 10,
+      "section": "Document Requirements",
+      "title": "What Documents Are Required?",
+      "content": "All applications must include: 1) Property / Land Survey, 2) Detailed Site Plan, 3) Sealed Design Professional Plans, 4) Contractor's Insurances (to be provided at time of permit issuance or anytime beforehand)",
+      "keywords": ["documents", "survey", "site plan", "professional plans", "insurance"]
+    },
+    {
+      "id": 11,
+      "section": "Document Requirements",
+      "title": "Insurance Documentation Required",
+      "content": "Contractor's Insurances must include: Proof of Liability Insurance, Proof of Disability Insurance, Proof of Workers Compensation Insurance, and CE-200 Certificate of Attestation of Exemption (if not required to carry workers' compensation and/or disability coverage).",
+      "keywords": ["insurance", "liability", "disability", "workers compensation", "CE-200"]
+    },
+    {
+      "id": 12,
+      "section": "Site Plan Requirements",
+      "title": "Property Boundaries and Lines",
+      "content": "All site plans should be to scale and include property lines and meters and bound thereof. For extremely large parcels, only the pertinent areas and immediately surrounding areas need to be shown. However, if the entire site is not shown a key must be provided to identify the specific location involved.",
+      "keywords": ["site plan", "property lines", "meters", "large parcels", "key"]
+    },
+    {
+      "id": 13,
+      "section": "Site Plan Requirements",
+      "title": "Existing Structures and Encumbrances",
+      "content": "All encumbrances of the parcel or portion(s) thereof (including but not limited to easements) must be shown. All existing (to remain) structures must be depicted with their relation to the property lines defined.",
+      "keywords": ["encumbrances", "easements", "existing structures", "property lines"]
+    },
+    {
+      "id": 14,
+      "section": "Site Plan Requirements",
+      "title": "Proposed Structure Details",
+      "content": "Site plans must show dimensioned location and accurate footprint of proposed structure(s). When construction involves utilities or services, include: size, location, and approximate depth of proposed sewer lateral; size, location, and approximate depth of domestic water service; size, location, and approximate depth of fire service; and location of any electrical services.",
+      "keywords": ["proposed structure", "sewer", "water service", "fire service", "electrical"]
+    },
+    {
+      "id": 15,
+      "section": "Site Plan Requirements",
+      "title": "Site Construction and Grading",
+      "content": "Site plans must adequately detail all site features to be constructed (including but not limited to retaining walls, walkways, stormwater facilities, fencing, and parking areas). Include appropriate site construction and grading details, topography (when applicable), and lighting calculations (when applicable).",
+      "keywords": ["grading", "retaining walls", "walkways", "stormwater", "fencing", "parking", "topography", "lighting"]
+    },
+    {
+      "id": 16,
+      "section": "Submission Procedure",
+      "title": "Step 1: Compile Required Documentation",
+      "content": "Step 1 of 4 - Gather all required documents before applying: Property / Land Survey, Detailed Site Plan, Sealed Design Professional Plans, and Contractor's Insurances. If any applications are needed for Zoning, address those before applying for building and site permits.",
+      "keywords": ["step 1", "documentation", "compile", "zoning applications"]
+    },
+    {
+      "id": 17,
+      "section": "Submission Procedure",
+      "title": "Step 2: Apply for New Build Permit",
+      "content": "Step 2 of 4 - You must submit an application for a new build permit using the City's Online Application Portal. Other permits that may be required (i.e. right-of-way, trades or zoning) must be applied for separately. If you are planning multiple new build projects, consider scheduling a pre-development meeting with City staff.",
+      "keywords": ["step 2", "apply", "online portal", "separate permits"]
+    },
+    {
+      "id": 18,
+      "section": "Submission Procedure",
+      "title": "Step 3: Application Review",
+      "content": "Step 3 of 4 - The Central Permit Office intakes the application and routes it to the appropriate departments for review. City departments will provide feedback and request additional information as needed. Any revisions must be submitted using the online portal.",
+      "keywords": ["step 3", "review", "feedback", "revisions", "departments"]
+    },
+    {
+      "id": 19,
+      "section": "Submission Procedure",
+      "title": "Step 4: Permit Issuance",
+      "content": "Step 4 of 4 - Once your application is approved and payment is received, your permit will be issued and uploaded to the documents section of your submission. You must print the permit placard and place in an obvious location at the project site. You will have one year from the time of issuance to complete the project. Remember to schedule an inspection with the Division of Code Enforcement upon project completion.",
+      "keywords": ["step 4", "issuance", "approved", "payment", "placard", "one year"]
+    },
+    {
+      "id": 20,
+      "section": "Contact Information",
+      "title": "Who to Contact",
+      "content": "Contact: General Questions - camino@syr.gov or 315-448-8600. Zoning Office - zoning@syr.gov or 315-448-8640. Code Enforcement - CodeEnforcement@syr.gov or 315-448-8695. Online Portal - syr.gov/residentialpermits",
+      "keywords": ["contact", "email", "phone", "office"]
+    }
+  ]
+}

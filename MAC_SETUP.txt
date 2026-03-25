@@ -1,0 +1,67 @@
+═══════════════════════════════════════════════════════════════
+ARIA Permit Bot - Mac Setup Instructions
+═══════════════════════════════════════════════════════════════
+
+STEP 1: Make Scripts Executable
+───────────────────────────────
+Open Terminal and run these commands from the claude-permit-bot folder:
+
+  chmod +x SET_API_KEY.sh
+  chmod +x START_SERVER.sh
+
+
+STEP 2: Set Your OpenAI API Key
+───────────────────────────────
+Run the setup script:
+
+  bash SET_API_KEY.sh
+
+Enter your OpenAI API key when prompted (get it from https://platform.openai.com/account/api-keys)
+
+⚠️  IMPORTANT: Close Terminal and open a NEW Terminal window after this step
+
+
+STEP 3: Start the Server
+───────────────────────
+In your NEW Terminal window, run:
+
+  bash START_SERVER.sh
+
+The server will start and automatically open http://127.0.0.1:5000 in your browser
+
+
+TROUBLESHOOTING
+───────────────
+
+If you get "command not found: python3":
+  - Install Python: brew install python3
+  - Or download from https://www.python.org
+
+If permissions denied on scripts:
+  - Run: chmod +x SET_API_KEY.sh START_SERVER.sh
+
+If "OPENAI_API_KEY not set":
+  - Close Terminal completely and open a NEW window
+  - The environment variable update takes effect in new terminal sessions
+
+If port 5000 is already in use:
+  - Find what's using it: lsof -i :5000
+  - Kill the process: kill -9 <PID>
+  - Then run START_SERVER.sh again
+
+
+REQUIREMENTS
+────────────
+- Python 3.8+
+- OpenAI API key (https://platform.openai.com/account/api-keys)
+- Internet connection
+
+
+DEPENDENCIES INSTALLED
+──────────────────────
+- Flask 2.3.3
+- Flask-CORS 4.0.0
+- openai 1.3.0
+- Werkzeug 2.3.7
+
+═══════════════════════════════════════════════════════════════

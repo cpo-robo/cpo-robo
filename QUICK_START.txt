@@ -1,0 +1,74 @@
+================================================================================
+                    ARIA - PERMIT CHATBOT QUICK START
+================================================================================
+
+STEP 1: GET YOUR API KEY
+========================
+1. Go to https://console.anthropic.com/api/keys
+2. Create a new API key or copy an existing one
+3. Copy the key (it looks like: sk-ant-xxx...)
+
+STEP 2: SET YOUR API KEY
+========================
+1. Double-click "SET_API_KEY.bat"
+2. Paste your API key when prompted
+3. Press Enter
+4. Wait for "SUCCESS" message
+
+STEP 3: START THE BOT
+====================
+1. Double-click "START_SERVER.bat"
+2. Wait for the server to start (2-3 seconds)
+3. Your browser will open automatically
+4. You should see the ARIA interface
+
+STEP 4: CHAT!
+=============
+1. Type your question about Syracuse permits
+2. Press ENTER or click SEND
+3. Wait for ARIA to respond
+4. Ask more questions!
+
+================================================================================
+
+EXAMPLE QUESTIONS:
+- "What documents do I need for a new build permit?"
+- "How long do I have to complete my project after getting the permit?"
+- "What is the zoning office phone number?"
+- "Tell me about insurance requirements"
+- "What are the steps to apply for a permit?"
+
+================================================================================
+
+TROUBLESHOOTING:
+- If the browser doesn't open, go to: http://127.0.0.1:5000
+- If you see an error about Python, install it from https://www.python.org
+- If you get API errors, check that your API key is correct
+- If the port is in use, edit app.py and change port from 5000 to 8000
+
+================================================================================
+
+FILES IN THIS FOLDER:
+- START_SERVER.bat               → Run this to start the bot
+- SET_API_KEY.bat                → Run this first to set your API key
+- app.py                          → Backend (Python/Flask)
+- templates/index.html            → Web interface
+- Syracuse_Permit_Guide_RAG.json  → Permit data (JSON format)
+- Syracuse_Permit_Guide_AI_Optimized.md → Permit data (Markdown)
+- requirements.txt                → Python dependencies
+- README.md                        → Full documentation
+
+================================================================================
+
+FEATURES:
+✓ Beautiful sci-fi interface with neon cyan theme
+✓ Real-time chat with Claude AI
+✓ Based on actual Syracuse permit guide
+✓ Responsive design (works on mobile too)
+✓ Smooth animations and glass morphism effects
+✓ Auto-scrolling chat history
+
+================================================================================
+
+Need more help? Open README.md for detailed documentation.
+
