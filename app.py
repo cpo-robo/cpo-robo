@@ -3,13 +3,10 @@ from flask_cors import CORS
 from openai import OpenAI
 import os
 import json
+from dotenv import load_dotenv
 
 # Load environment variables from .env file
-try:
-    from dotenv import load_dotenv
-    load_dotenv()
-except ImportError:
-    pass
+load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
@@ -21,13 +18,7 @@ if not api_key:
     print("For Cloud Run, set this in the service configuration.")
     print("For local testing, run: set OPENAI_API_KEY=your-key-here")
 
-# Lazy initialize client to avoid startup blocking
-client = None
-def get_client():
-    global client
-    if client is None:
-        client = OpenAI(api_key=api_key)
-    return client
+client = OpenAI(api_key=api_key)
 
 # Load the permit guide JSON for context
 PERMIT_GUIDE_PATH = os.path.join(os.path.dirname(__file__), 'Syracuse_Permit_Guide_RAG.json')
@@ -72,7 +63,7 @@ Provide specific contact information and links when relevant."""
             system_prompt += f"\n\n## Reference Materials:\n{permit_guide_context}"
 
         # Call OpenAI API with gpt-4o-mini (cheapest and fast)
-        message = get_client().chat.completions.create(
+        message = client.chat.completions.create(
             model="gpt-4o-mini",
             max_tokens=1024,
             system=system_prompt,
