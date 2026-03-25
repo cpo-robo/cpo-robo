@@ -494,10 +494,10 @@
 
         // Cloud Run Backend Configuration
         // For local testing: http://127.0.0.1:5000
-        // For production: https://cpo-robo-XXXXX.run.app (will be updated after deployment)
+        // For production: Cloud Run deployed backend
         const BACKEND_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
             ? 'http://127.0.0.1:5000'
-            : 'https://cpo-robo-XXXXX.run.app';  // Replace XXXXX with actual Cloud Run service ID
+            : 'https://cpo-robo-254920146556.us-east1.run.app';
 
         // Auto-resize textarea
         inputField.addEventListener('input', () => {
