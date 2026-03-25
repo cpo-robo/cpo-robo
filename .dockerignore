@@ -1,0 +1,10 @@
+__pycache__
+*.pyc
+.git
+.gitignore
+.env
+.DS_Store
+do-later/
+TODOS.md
+*.md
+.boto

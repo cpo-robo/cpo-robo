@@ -11,8 +11,8 @@ CORS(app)
 api_key = os.getenv('OPENAI_API_KEY')
 if not api_key:
     print("⚠️  WARNING: OPENAI_API_KEY environment variable not set!")
-    print("Please set your OpenAI API key before running the server.")
-    print("Visit https://platform.openai.com/account/api-keys to get your API key.")
+    print("For Cloud Run, set this in the service configuration.")
+    print("For local testing, run: set OPENAI_API_KEY=your-key-here")
 
 client = OpenAI(api_key=api_key)
 
@@ -93,18 +93,10 @@ def health():
     })
 
 if __name__ == '__main__':
-    if not api_key:
-        print("\n" + "="*60)
-        print("ERROR: OPENAI_API_KEY not set!")
-        print("="*60)
-        print("\nTo set your API key, run:")
-        print('  set OPENAI_API_KEY=your-key-here')
-        print("\nOr edit SET_API_KEY.bat and add your key there.")
-        print("\nGet your API key from: https://platform.openai.com/account/api-keys")
-        print("="*60 + "\n")
-    else:
-        print("\n✓ OpenAI API key detected")
-        print("✓ Using gpt-4o-mini (cheapest & fastest)")
-        print("✓ Starting CPO Robo Permit Bot...")
+    print("\n✓ OpenAI API key configured")
+    print("✓ Using gpt-4o-mini (cheapest & fastest)")
+    print("✓ Starting CPO Robo Permit Bot...")
 
-    app.run(host='127.0.0.1', port=5000, debug=False)
+    # Cloud Run requires listening on 0.0.0.0 and port from environment
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=False)
