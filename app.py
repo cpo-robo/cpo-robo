@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
-from openai import OpenAI
+import openai
 import os
 import json
 from dotenv import load_dotenv
@@ -11,14 +11,14 @@ load_dotenv()
 app = Flask(__name__)
 CORS(app)
 
-# Initialize OpenAI client
+# Initialize OpenAI API
 api_key = os.getenv('OPENAI_API_KEY')
 if not api_key:
     print("⚠️  WARNING: OPENAI_API_KEY environment variable not set!")
     print("For Cloud Run, set this in the service configuration.")
     print("For local testing, run: set OPENAI_API_KEY=your-key-here")
 
-client = OpenAI(api_key=api_key)
+openai.api_key = api_key
 
 # Load system prompt from file
 with open("cpo_system_prompt.txt", "r") as f:
@@ -60,24 +60,24 @@ def chat():
         if permit_guide_context:
             system_prompt += f"\n\n## Reference Materials:\n{permit_guide_context}"
 
-        # Call OpenAI API with gpt-4o-mini (cheapest and fast)
-        message = client.chat.completions.create(
-            model="gpt-4o-mini",
+        # Call OpenAI API with gpt-3.5-turbo
+        message = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
             max_tokens=1024,
-            system=system_prompt,
             messages=[
+                {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_message}
             ]
         )
 
         # Extract response text
-        response_text = message.choices[0].message.content
+        response_text = message.choices[0]['message']['content']
 
         return jsonify({
             'response': response_text,
             'usage': {
-                'input_tokens': message.usage.prompt_tokens,
-                'output_tokens': message.usage.completion_tokens
+                'input_tokens': message['usage']['prompt_tokens'],
+                'output_tokens': message['usage']['completion_tokens']
             }
         })
 
