@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
-import openai
+from openai import OpenAI
 import os
 import json
 from dotenv import load_dotenv
@@ -11,14 +11,18 @@ load_dotenv()
 app = Flask(__name__)
 CORS(app)
 
-# Initialize OpenAI API
+# Initialize OpenAI client
 api_key = os.getenv('OPENAI_API_KEY')
 if not api_key:
     print("⚠️  WARNING: OPENAI_API_KEY environment variable not set!")
     print("For Cloud Run, set this in the service configuration.")
     print("For local testing, run: set OPENAI_API_KEY=your-key-here")
 
-openai.api_key = api_key
+client = OpenAI(api_key=api_key)
+
+# Load system prompt from file
+with open("cpo_system_prompt.txt", "r") as f:
+    cpo_system_prompt = f.read()
 
 # Load the permit guide JSON for context
 PERMIT_GUIDE_PATH = os.path.join(os.path.dirname(__file__), 'Syracuse_Permit_Guide_RAG.json')
@@ -52,34 +56,28 @@ def chat():
             return jsonify({'error': 'API key not configured. Please set OPENAI_API_KEY environment variable.'}), 500
 
         # Build the system prompt with permit guide context
-        system_prompt = """You are CPO Robo, a Centralized Permitting Bot for the City of Syracuse.
-You help residents understand the permit process for new residential builds and modular homes.
-
-You have access to the City of Syracuse Residential Permit Guide. Use this information to answer questions accurately.
-Be helpful, clear, and professional. If you don't know something, say so honestly.
-Provide specific contact information and links when relevant."""
-
+        system_prompt = cpo_system_prompt
         if permit_guide_context:
             system_prompt += f"\n\n## Reference Materials:\n{permit_guide_context}"
 
-        # Call OpenAI API with gpt-3.5-turbo (compatible with older SDK)
-        message = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
+        # Call OpenAI API with gpt-4o-mini (cheapest and fast)
+        message = client.chat.completions.create(
+            model="gpt-4o-mini",
             max_tokens=1024,
-            system_prompt=system_prompt,
+            system=system_prompt,
             messages=[
                 {"role": "user", "content": user_message}
             ]
         )
 
         # Extract response text
-        response_text = message.choices[0]['message']['content']
+        response_text = message.choices[0].message.content
 
         return jsonify({
             'response': response_text,
             'usage': {
-                'input_tokens': message['usage']['prompt_tokens'],
-                'output_tokens': message['usage']['completion_tokens']
+                'input_tokens': message.usage.prompt_tokens,
+                'output_tokens': message.usage.completion_tokens
             }
         })
 
