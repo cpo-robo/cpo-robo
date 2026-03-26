@@ -137,23 +137,21 @@
             flex-direction: column;
             gap: 20px;
             scroll-behavior: smooth;
+            scrollbar-width: none;
         }
 
+        /* Hide scrollbar for WebKit browsers (Chrome, Safari, Edge) */
         .messages-container::-webkit-scrollbar {
-            width: 8px;
+            width: 0;
+            height: 0;
         }
 
         .messages-container::-webkit-scrollbar-track {
-            background: rgba(0, 217, 255, 0.05);
+            background: none;
         }
 
         .messages-container::-webkit-scrollbar-thumb {
-            background: var(--accent-cyan);
-            border-radius: 4px;
-        }
-
-        .messages-container::-webkit-scrollbar-thumb:hover {
-            background: var(--accent-blue);
+            background: none;
         }
 
         .message {
