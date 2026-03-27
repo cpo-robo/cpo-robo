@@ -2,14 +2,18 @@
 // Copy and paste this entire code into your Google Sheet's Apps Script editor
 // (Extensions → Apps Script in your Google Sheet)
 
-const SPREADSHEET_ID = "1ifmw3iDe3Usj7OeDQojnsgQaNw7PDMkThXGeTJhkCAsRdaOLWDU992VU"; // Sheet ID configured
+const SPREADSHEET_ID = "1L3rWBqJKN1eTWQTtcyfi7w_RbbPxPYENGrIo_vyBnU4"; // Sheet ID configured
 const CUSTOM_SHEET_NAME = "Custom";
 const STANDARD_SHEET_NAME = "Standard";
 
 function doPost(e) {
   try {
+    Logger.log("doPost called with: " + e.postData.contents);
+
     const data = JSON.parse(e.postData.contents);
     const { question, isStandard } = data;
+
+    Logger.log("Question: " + question + ", isStandard: " + isStandard);
 
     if (!question) {
       return ContentService.createTextOutput(
@@ -18,15 +22,19 @@ function doPost(e) {
     }
 
     if (isStandard) {
+      Logger.log("Logging to Standard sheet");
       logToStandardSheet(question);
     } else {
+      Logger.log("Logging to Custom sheet");
       logToCustomSheet(question);
     }
 
+    Logger.log("Successfully logged: " + question);
     return ContentService.createTextOutput(
-      JSON.stringify({ success: true, message: "Logged" })
+      JSON.stringify({ success: true, message: "Logged successfully" })
     ).setMimeType(ContentService.MimeType.JSON);
   } catch (error) {
+    Logger.log("ERROR: " + error.toString());
     return ContentService.createTextOutput(
       JSON.stringify({ success: false, error: error.toString() })
     ).setMimeType(ContentService.MimeType.JSON);
