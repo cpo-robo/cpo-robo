@@ -2,7 +2,7 @@
 // Copy and paste this entire code into your Google Sheet's Apps Script editor
 // (Extensions → Apps Script in your Google Sheet)
 
-const SPREADSHEET_ID = "YOUR_SPREADSHEET_ID_HERE"; // Replace with your Sheet ID
+const SPREADSHEET_ID = "1ifmw3iDe3Usj7OeDQojnsgQaNw7PDMkThXGeTJhkCAsRdaOLWDU992VU"; // Sheet ID configured
 const CUSTOM_SHEET_NAME = "Custom";
 const STANDARD_SHEET_NAME = "Standard";
 
