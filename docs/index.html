@@ -503,6 +503,24 @@
             ? 'http://127.0.0.1:5000'
             : 'https://cpo-robo-254920146556.us-east1.run.app';
 
+        // ===== GOOGLE SHEETS LOGGER =====
+        const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxpznbCjXlbgz-EG5iA5e0Vx1afS-_g4hEhSGimXjZ2i7iUzgO5GfAfpYRd3rvMqHTP/exec";
+
+        function logQuestionToSheets(question, isStandard = false) {
+            fetch(GOOGLE_APPS_SCRIPT_URL, {
+                method: "POST",
+                body: JSON.stringify({ question: question, isStandard: isStandard })
+            })
+            .then(r => r.json())
+            .then(result => {
+                if (result.success) {
+                    console.log("✓ Logged to Google Sheets:", question);
+                }
+            })
+            .catch(e => console.error("Sheet logging error:", e));
+        }
+        // ===== END GOOGLE SHEETS LOGGER =====
+
         // Auto-resize textarea
         inputField.addEventListener('input', () => {
             inputField.style.height = 'auto';
@@ -522,6 +540,9 @@
         async function sendMessage() {
             const message = inputField.value.trim();
             if (!message) return;
+
+            // Log to Google Sheets (custom question)
+            logQuestionToSheets(message, false);
 
             // Clear input
             inputField.value = '';
@@ -617,6 +638,8 @@
             inputField.style.height = 'auto';
             inputField.style.height = Math.min(inputField.scrollHeight, 120) + 'px';
             inputField.focus();
+            // Log to Google Sheets (standard question)
+            logQuestionToSheets(text, true);
             // Auto-send after a short delay
             setTimeout(() => {
                 sendMessage();
